@@ -47,11 +47,11 @@ class aba(intelligence.sw):
 
             best = [self.__agents[i] for i in
                     [fitness.index(x) for x in sort_fitness[:count[0]]]]
-            selected = [self.__agents[i]
+            best_agents = [self.__agents[i]
                         for i in [fitness.index(x)
                                   for x in sort_fitness[count[0]:count[2]]]]
 
-            newbee = self.__new(best, count[1], lb, ub) + self.__new(selected,
+            newbee = self.new_bee(best, count[1], lb, ub) + self.new_bee(best_agents,
                                                                    count[3],
                                                                    lb, ub)
             m = len(newbee)
@@ -68,17 +68,17 @@ class aba(intelligence.sw):
 
         self._set_Gbest(Gbest)
 
-    def __new(self, l, c, lb, ub):
+    def new_bee(self, l, c, lb, ub):
 
         bee = []
         for i in l:
-            new = [self.__neighbor(i, lb, ub) for k in range(c)]
+            new = [self.neighbor(i, lb, ub) for k in range(c)]
             bee += new
         bee += l
 
         return bee
 
-    def __neighbor(self, who, lb, ub):
+    def neighbor(self, who, lb, ub):
 
         neighbor = np.array(who) + uniform(-1, 1) * (
             np.array(who) - np.array(
