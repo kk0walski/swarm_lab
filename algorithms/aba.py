@@ -34,10 +34,10 @@ class aba(intelligence.sw):
             count = n - n // 2, 1, 1, 1
         else:
             a = n // 10
-            b = 5
-            c = (n - a * b - a) // 2
+            onlocker = 5
+            scout = (n - a * onlocker - a) // 2
             d = 2
-            count = a, b, c, d
+            count = a, onlocker, scout, d
 
         for t in range(iteration):
 
